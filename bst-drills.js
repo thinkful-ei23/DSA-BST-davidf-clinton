@@ -49,23 +49,19 @@ function findMaxHeight(tree) {
 }
 
 function isBST(tree) {
-  let results = true;
-  if (tree.left !== null && tree.left.key > tree.key) {
-    results = false;
+  if (tree === null) {
+    return true;
   }
-  if (tree.right !== null && tree.right.key > tree.key) {
-    results = false;
+
+  if (tree.right !== null && tree.key > tree.right.key) {
+    return false;
   }
-  if (tree.left === null && tree.left === null) {
-    results = true;
+
+  if (tree.left !== null && tree.key < tree.left.key) {
+    return false;
   }
-  if (tree.left !== null && tree.left.key < tree.key) {
-    isBST(tree.left);
-  }
-  if (tree.right !== null && tree.right.key > tree.key) {
-    isBST(tree.right);
-  }
-  return results;
+
+  return isBST(tree.left) && isBST(tree.right);
 }
 
 console.log(isBST(BST));
