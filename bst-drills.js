@@ -12,7 +12,7 @@ BST.insert(9);
 BST.insert(2);
 BST.insert(5);
 BST.insert(7);
-BST.insert(10);
+// BST.insert(10);
 BST.insert(8);
 
 // BST.insert('e');
@@ -64,5 +64,33 @@ function isBST(tree) {
   return isBST(tree.left) && isBST(tree.right);
 }
 
-console.log(isBST(BST));
-// console.log(BST);
+function getNthLargest(tree, n) {
+  // if (tree.left === null && tree.right === null) {
+  //   console.log('no left no right');
+  //   return;
+  // }
+  if (tree.right) {
+    console.log('moving to', tree.right.key);
+    getNthLargest(tree.right, n);
+  }
+  n--;
+  if (n === 0) {
+    console.log('base case triggered at', tree.key);
+    let key = tree.key;
+    console.log('key', typeof(key));
+    return key;
+  }
+  if (tree.left) {
+    n--;
+    getNthLargest(tree.left, n);
+  }
+
+  // let largest;
+  // while (tree.right !== null) {
+  //   largest = largest.right;
+  // }
+}
+
+// console.log(isBST(BST));
+console.log(BST);
+console.log(getNthLargest(BST, 3));
