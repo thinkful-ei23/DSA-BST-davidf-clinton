@@ -12,6 +12,7 @@ BST.insert(9);
 BST.insert(2);
 BST.insert(5);
 BST.insert(7);
+BST.insert(10);
 BST.insert(8);
 
 // BST.insert('e');
@@ -47,5 +48,25 @@ function findMaxHeight(tree) {
   }
 }
 
-console.log(findMaxHeight(BST));
+function isBST(tree) {
+  let results = true;
+  if (tree.left !== null && tree.left.key > tree.key) {
+    results = false;
+  }
+  if (tree.right !== null && tree.right.key > tree.key) {
+    results = false;
+  }
+  if (tree.left === null && tree.left === null) {
+    results = true;
+  }
+  if (tree.left !== null && tree.left.key < tree.key) {
+    isBST(tree.left);
+  }
+  if (tree.right !== null && tree.right.key > tree.key) {
+    isBST(tree.right);
+  }
+  return results;
+}
+
+console.log(isBST(BST));
 // console.log(BST);
