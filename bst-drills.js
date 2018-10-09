@@ -39,7 +39,7 @@ function findMaxHeight(tree) {
     if (tree.right) {
       rightHeight = findMaxHeight(tree.right);
     }
-    if (leftHeight > rightHeight) {
+    if (leftHeight >= rightHeight) {
       return leftHeight + 1;
     } else {
       return rightHeight + 1;
