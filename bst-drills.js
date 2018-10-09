@@ -48,6 +48,24 @@ function findMaxHeight(tree) {
   }
 }
 
+function findMinHeight(tree) {
+  let leftHeight = 0;
+  let rightHeight = 0;
+  if (tree.left) {
+    leftHeight = findMinHeight(tree.left);
+  }
+  if (tree.right) {
+    rightHeight = findMinHeight(tree.right);
+  }
+  return 1 + (leftHeight <= rightHeight ? leftHeight : rightHeight);
+}
+
+function isBalanced(tree) {
+  const max = findMaxHeight(tree);
+  const min = findMinHeight(tree);
+  return max - min < 2;
+}
+
 function isBST(tree) {
   if (tree === null) {
     return true;
@@ -64,7 +82,7 @@ function isBST(tree) {
   return isBST(tree.left) && isBST(tree.right);
 }
 
-function getNthLargest(tree, n){
+function getNthLargest(tree, n) {
   let printCount = 0;
   let result;
   function setResult(tree) {
@@ -81,4 +99,5 @@ function getNthLargest(tree, n){
 // console.log(isBST(BST));
 // console.log(BST);
 // console.log(getNthLargest2(BST, 3));
-console.log(getNthLargest(BST, 3));
+// console.log(getNthLargest(BST, 3));
+console.log(isBalanced(BST));
